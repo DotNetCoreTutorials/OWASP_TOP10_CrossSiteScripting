@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>XSS Search</h2>
+        <p>
+            This is an example page where you can run a search and see how being able to inject tags in the search could affect the page. 
+        </p>
+        <form>
+            <p>
+                <label>Search Query : </label> <input type="text" name="query" class="form-control" />
+            </p>
+        </form>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Context.Request.Query["query"]))
+{
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Search Results for "@Html.Raw(Context.Request.Query["query"])"</h2>
+        <ul>
+            <li>Example Result 1</li>
+            <li>Example Result 2</li>
+        </ul>
+    </div>
+</div>
+}
